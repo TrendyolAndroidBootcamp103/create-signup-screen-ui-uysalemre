@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Kaktüs Dükkanı</string>
+    <!-- Form Strings -->
+    <string name="email_or_username">Email veya Kullanıcı Adı</string>
+    <string name="password">Şifre</string>
+    <string name="log_in">Giriş</string>
+    <string name="create_an_account">Hesap Oluştur</string>
+    <string name="email">Email</string>
+    <string name="username">Kullanıcı Adı</string>
+    <string name="already_have_an_account">Hesabın var mı ?</string>
+    <string name="sign_up">Kaydol</string>
+    <string name="product_list">Ürünler</string>
+    <string name="product_detail">Ürün Detayı</string>
+    <string name="add_to_cart">Sepete Ekle</string>
+    <string name="related_products">İlgili Ürünler</string>
+    <!-- Error Strings -->
+    <string name="err_field_is_required">%1$s gereklidir.</string>
+    <string name="err_field_is_long">%1$s çok uzun.</string>
+    <string name="err_field_is_short">%1$s çok kısa.</string>
+    <string name="err_email_is_invalid">%1$s geçersiz</string>
+    <string name="err_username_is_invalid">%1$s sadece a–z, 0–9 and _ karakterleri içerebilir.</string>
+    <string name="err_password_invalid">%1$s bir sayı, bir büyük harf, bir küçük harf ve bir özel karakter içermelidir.</string>
+</resources>

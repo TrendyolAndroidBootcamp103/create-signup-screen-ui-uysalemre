@@ -3,13 +3,16 @@
     <!-- Form Strings -->
     <string name="email_or_username">Email or Username</string>
     <string name="password">Password</string>
-    <string name="log_in">Log in</string>
+    <string name="log_in">Login</string>
     <string name="create_an_account">Create an account</string>
-    <string name="email">E-mail</string>
+    <string name="email">Email</string>
     <string name="username">Username</string>
     <string name="already_have_an_account">Already Have an Account ?</string>
-    <string name="sign_up">Sign Up</string>
-    <string name="username_or_email">Email or Username</string>
+    <string name="sign_up">Signup</string>
+    <string name="product_list">Products</string>
+    <string name="product_detail">Product Detail</string>
+    <string name="add_to_cart">Add to Chart</string>
+    <string name="related_products">Related Products</string>
     <!-- Error Strings -->
     <string name="err_field_is_required">%1$s is required.</string>
     <string name="err_field_is_long">%1$s is too long.</string>

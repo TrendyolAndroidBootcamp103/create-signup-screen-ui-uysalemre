@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="rv_padding">4dp</dimen>
+    <dimen name="item_product_spacing">8dp</dimen>
+    <dimen name="item_related_product_spacing">16dp</dimen>
+    <dimen name="detail_iv_width">168dp</dimen>
+    <dimen name="detail_iv_height">125dp</dimen>
+</resources>
