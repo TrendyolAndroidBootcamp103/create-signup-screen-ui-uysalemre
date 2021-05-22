@@ -6,27 +6,8 @@
     app:startDestination="@id/productList">
 
     <fragment
-        android:id="@+id/loginFragment"
-        android:name="school.cactus.succulentshop.auth.login.LoginFragment"
-        android:label="@string/log_in"
-        tools:layout="@layout/fragment_login">
-        <action
-            android:id="@+id/action_loginFragment_to_signUpFragment"
-            app:destination="@id/signUpFragment" />
-
-    </fragment>
-
-    <fragment
-        android:id="@+id/signUpFragment"
-        android:name="school.cactus.succulentshop.auth.signup.SignUpFragment"
-        android:label="@string/sign_up"
-        tools:layout="@layout/fragment_signup">
-
-    </fragment>
-
-    <fragment
         android:id="@+id/productList"
-        android:name="school.cactus.succulentshop.product.list.ProductListFragment"
+        android:name="school.cactus.succulentshop.product.ui.ProductListFragment"
         android:label="@string/product_list"
         tools:layout="@layout/fragment_product_list">
         <action
@@ -36,7 +17,7 @@
 
     <fragment
         android:id="@+id/productDetailFragment"
-        android:name="school.cactus.succulentshop.product.detail.ProductDetailFragment"
+        android:name="school.cactus.succulentshop.product.ui.ProductDetailFragment"
         android:label="@string/product_detail"
         tools:layout="@layout/fragment_product_detail">
         <argument
@@ -47,5 +28,30 @@
             android:id="@+id/action_productDetailFragment_self"
             app:destination="@id/productDetailFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="school.cactus.succulentshop.auth.ui.LoginFragment"
+        android:label="@string/log_in"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="school.cactus.succulentshop.auth.ui.SignUpFragment"
+        android:label="@string/sign_up"
+        tools:layout="@layout/fragment_signup" />
+    <action
+        android:id="@+id/action_global_productList"
+        app:destination="@id/productList"
+        app:popUpTo="@id/nav_graph" />
+    <action
+        android:id="@+id/action_global_loginFragment"
+        app:destination="@id/loginFragment"
+        app:popUpTo="@id/nav_graph" />
 
 </navigation>

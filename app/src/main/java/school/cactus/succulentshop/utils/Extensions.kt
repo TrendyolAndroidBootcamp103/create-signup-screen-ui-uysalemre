@@ -2,9 +2,17 @@ package school.cactus.succulentshop.utils
 
 import androidx.viewbinding.ViewBinding
 import com.google.android.material.textfield.TextInputLayout
+import com.google.gson.GsonBuilder
+import okhttp3.ResponseBody
+import retrofit2.Response
+import school.cactus.succulentshop.R
 import school.cactus.succulentshop.databinding.FragmentLoginBinding
 import school.cactus.succulentshop.databinding.FragmentSignupBinding
-import school.cactus.succulentshop.product.models.Product
+import school.cactus.succulentshop.product.repository.model.SizedImage
+import school.cactus.succulentshop.utils.network.AuthorizationErrorResponse
+import school.cactus.succulentshop.utils.network.GenericErrorResponse
+import school.cactus.succulentshop.utils.network.NetworkCallback
+import school.cactus.succulentshop.utils.network.SucculentNetworkHelper
 
 fun TextInputLayout.validate(binding: ViewBinding): Boolean {
     error = validator(binding, editText!!.text.toString())
@@ -16,16 +24,16 @@ private fun TextInputLayout.validator(binding: ViewBinding, content: String): St
     return when (binding) {
         is FragmentLoginBinding -> {
             when (this) {
-                binding.tilUsernameOrEmail -> validateUsernameOrEmail(this.context, content)
-                binding.tilPassword -> validatePassword(this.context, content)
+                binding.tilUsernameOrEmail -> validateUsernameOrEmail(context, content)
+                binding.tilPassword -> validatePassword(context, content)
                 else -> null
             }
         }
         is FragmentSignupBinding -> {
             when (this) {
-                binding.tilUsername -> validateUsername(this.context, content)
-                binding.tilPassword -> validatePassword(this.context, content)
-                binding.tilEmail -> validateEmail(this.context, content)
+                binding.tilUsername -> validateUsername(context, content)
+                binding.tilPassword -> validatePassword(context, content)
+                binding.tilEmail -> validateEmail(context, content)
                 else -> null
             }
         }
@@ -33,7 +41,34 @@ private fun TextInputLayout.validator(binding: ViewBinding, content: String): St
     }
 }
 
-fun List<Product>.findProduct(id: Int): Product? = this.find { it.id == id }
+private fun ResponseBody.convertErrorBody(): GenericErrorResponse =
+    GsonBuilder().create().fromJson(this.string(), GenericErrorResponse::class.java)
 
-fun List<Product>.relatedProducts(id: Int): List<Product> =
-    this.shuffled().filter { it.id != id }.subList(0, 4)
+private fun ResponseBody.convertAuthErrorBody(): AuthorizationErrorResponse =
+    GsonBuilder().create().fromJson(this.string(), AuthorizationErrorResponse::class.java)
+
+fun <Any> Response<Any>.handleResponse(networkCallback: NetworkCallback<Any>) {
+    when (this.code()) {
+        in 200..299 -> {
+            networkCallback.onSuccess(this.body()!!)
+        }
+        in 400..499 -> {
+            when (val errorBody = this.errorBody()) {
+                null -> {
+                    networkCallback.onUnexpectedError(R.string.err_http_unknown)
+                }
+                else -> {
+                    when {
+                        this.code() == 401 -> networkCallback.onFailure(errorBody.convertAuthErrorBody())
+                        else -> networkCallback.onFailure(errorBody.convertErrorBody())
+                    }
+                }
+            }
+        }
+        in 500..599 -> {
+            networkCallback.onUnexpectedError(R.string.err_http_unknown)
+        }
+    }
+}
+
+fun SizedImage.getImageUrl() = SucculentNetworkHelper.BASE_URL + this.url
