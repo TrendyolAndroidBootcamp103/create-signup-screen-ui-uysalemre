@@ -41,10 +41,10 @@ private fun TextInputLayout.validator(binding: ViewBinding, content: String): St
     }
 }
 
-private fun ResponseBody.convertErrorBody(): GenericErrorResponse =
+fun ResponseBody.convertErrorBody(): GenericErrorResponse =
     GsonBuilder().create().fromJson(this.string(), GenericErrorResponse::class.java)
 
-private fun ResponseBody.convertAuthErrorBody(): AuthorizationErrorResponse =
+fun ResponseBody.convertAuthErrorBody(): AuthorizationErrorResponse =
     GsonBuilder().create().fromJson(this.string(), AuthorizationErrorResponse::class.java)
 
 fun <Any> Response<Any>.handleResponse(networkCallback: NetworkCallback<Any>) {

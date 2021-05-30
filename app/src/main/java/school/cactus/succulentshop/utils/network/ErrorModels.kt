@@ -8,7 +8,9 @@ data class GenericErrorResponse(
     override val statusCode: Int,
     override val error: String,
     val message: List<Messages>
-) : ErrorResponse()
+) : ErrorResponse() {
+    fun getErrorMessage() = message[0].messages[0].message
+}
 
 data class AuthorizationErrorResponse(
     override val statusCode: Int,

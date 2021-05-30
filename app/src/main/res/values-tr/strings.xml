@@ -14,7 +14,7 @@
     <string name="product_detail">Ürün Detayı</string>
     <string name="add_to_cart">Sepete Ekle</string>
     <string name="related_products">İlgili Ürünler</string>
-    <string name="product_price_tag" >₺%1$s</string>
+    <string name="product_price_tag">₺%1$s</string>
     <!-- Error Strings -->
     <string name="err_field_is_required">%1$s gereklidir.</string>
     <string name="err_field_is_long">%1$s çok uzun.</string>
@@ -24,6 +24,7 @@
     <string name="err_password_invalid">%1$s bir sayı, bir büyük harf, bir küçük harf ve bir özel karakter içermelidir.</string>
     <string name="err_http_unknown">Beklenmeyen bir hata oluştu.</string>
     <string name="err_http_internet">Bağlantınızı kontrol ediniz.</string>
+    <string name="err_invalid_token">Geçersiz token.</string>
     <string name="err_snackbar_retry">Tekrar Dene</string>
     <string name="err_empty_product_list">Burada hiç Kaktüs yok.</string>
     <string name="logout">Çıkış yap</string>

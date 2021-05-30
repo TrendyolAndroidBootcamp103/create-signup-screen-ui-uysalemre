@@ -20,9 +20,8 @@ object SucculentNetworkHelper {
     const val BASE_URL: String = "https://apps.cactus.school"
     private lateinit var retrofit: Retrofit
 
-    fun buildRetrofit(context: Context) {
-        val authorizedRequestInterceptor =
-            AuthorizedRequestInterceptor(context)
+    fun buildRetrofit() {
+        val authorizedRequestInterceptor = AuthorizedRequestInterceptor()
 
         val interceptor = HttpLoggingInterceptor().apply {
             setLevel(if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE)
@@ -44,31 +43,14 @@ object SucculentNetworkHelper {
 
     fun <Any> createService(clazz: Class<Any>): Any = retrofit.create(clazz)
 
-    fun <Any> handleNetworkCallback(networkCallback: NetworkCallback<Any>): Callback<Any> {
-        return object : Callback<Any> {
-            override fun onFailure(call: Call<Any>, t: Throwable) {
-                val message = when (t) {
-                    is IOException -> R.string.err_http_internet
-                    else -> R.string.err_http_unknown
-                }
-                networkCallback.onUnexpectedError(message)
-            }
-
-            override fun onResponse(
-                call: Call<Any>,
-                response: Response<Any>
-            ) = response.handleResponse(networkCallback)
-        }
-    }
-
-    private class AuthorizedRequestInterceptor(private val context: Context) : Interceptor {
+    private class AuthorizedRequestInterceptor : Interceptor {
 
         override fun intercept(chain: Interceptor.Chain): okhttp3.Response {
             val requestBuilder = chain.request().newBuilder()
             if (chain.request().url.encodedPathSegments[0] != "auth") {
                 requestBuilder.addHeader(
                     "Authorization",
-                    "Bearer ${SharedPrefHelper.getInstance(context).getJwt()}"
+                    "Bearer ${SharedPrefHelper.getJwt()}"
                 )
             }
             return chain.proceed(requestBuilder.build())

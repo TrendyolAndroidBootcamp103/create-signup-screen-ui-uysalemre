@@ -8,11 +8,11 @@ import school.cactus.succulentshop.product.repository.model.RelatedProducts
 
 interface ProductNetworkService {
     @GET("/products")
-    fun getProducts(): Call<List<ProductItem>>
+    suspend fun getProducts(): List<ProductItem>
 
     @GET("/products/{id}")
-    fun getProductById(@Path("id") id: Int): Call<ProductItem>
+    suspend fun getProductById(@Path("id") id: Int): ProductItem
 
     @GET("/related-products/{id}")
-    fun getRelatedProductsById(@Path("id") id: Int): Call<RelatedProducts>
+    suspend fun getRelatedProductsById(@Path("id") id: Int): RelatedProducts
 }

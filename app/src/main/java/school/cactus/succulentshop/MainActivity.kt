@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.Navigation
@@ -64,16 +65,4 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
             piLoading.visibility = GONE
             navMainHost.visibility = VISIBLE
         }
-
-    fun handleSnackBar(message: String, length: Int, retry: (() -> Unit)? = null) {
-        val snackBar = Snackbar.make(
-            binding.root,
-            message,
-            length
-        )
-        retry?.let {
-            snackBar.setAction(R.string.err_snackbar_retry) { it() }
-        }
-        snackBar.show()
-    }
 }
