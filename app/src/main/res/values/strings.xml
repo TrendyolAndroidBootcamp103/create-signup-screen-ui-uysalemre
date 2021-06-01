@@ -1,9 +1,30 @@
 <resources>
     <string name="app_name">Succulent Shop</string>
+    <!-- Form Strings -->
     <string name="email_or_username">Email or Username</string>
     <string name="password">Password</string>
-    <string name="log_in">Log in</string>
+    <string name="log_in">Login</string>
     <string name="create_an_account">Create an account</string>
-    <string name="this_field_is_required">This field is required.</string>
-    <string name="identifier_is_too_short">Identifier is too short.</string>
+    <string name="email">Email</string>
+    <string name="username">Username</string>
+    <string name="already_have_an_account">Already Have an Account ?</string>
+    <string name="sign_up">Signup</string>
+    <string name="product_list">Products</string>
+    <string name="product_detail">Product Detail</string>
+    <string name="add_to_cart">Add to Chart</string>
+    <string name="related_products">Related Products</string>
+    <string name="product_price_tag" >$%1$s</string>
+    <!-- Error Strings -->
+    <string name="err_field_is_required">%1$s is required.</string>
+    <string name="err_field_is_long">%1$s is too long.</string>
+    <string name="err_field_is_short">%1$s is too short.</string>
+    <string name="err_email_is_invalid">%1$s is invalid</string>
+    <string name="err_username_is_invalid">%1$s can only include a–z, 0–9 and _ characters.</string>
+    <string name="err_password_invalid">%1$s must contain one digit, one uppercase letter, one lowercase letter and one special character.</string>
+    <string name="err_http_unknown">An unexpected error happened.</string>
+    <string name="err_invalid_token">Invalid token.</string>
+    <string name="err_http_internet">Please check your connection.</string>
+    <string name="err_snackbar_retry">Retry</string>
+    <string name="err_empty_product_list">There is no succulent in here</string>
+    <string name="logout">Logout</string>
 </resources>
